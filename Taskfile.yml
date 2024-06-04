@@ -1,0 +1,21 @@
+# https://taskfile.dev
+
+version: "3"
+
+tasks:
+  default:
+    deps:
+      - task: test
+
+  build:
+    cmds:
+      - go build -o bin/fs
+
+  run:
+    deps: [build]
+    cmds:
+      - ./bin/fs
+
+  test:
+    cmds:
+      - gotest -race -cover ./...
